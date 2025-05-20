@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DonerShop</title>
+
+    <!-- Comfortaa font -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Comfortaa', cursive;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Кнопки прокрутки */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ef4444;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background-color: #ef4444;
+        }
+
+        .carousel-left {
+            left: 8px;
+        }
+
+        .carousel-right {
+            right: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 pt-16">
+
+    <!-- Navbar фиксированный -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow p-4 flex items-center justify-between z-50">
+        <div class="flex items-center gap-3">
+            <img src="images/Screenshot 2025-05-20 at 12.56.17.png" class="w- 50 h-10" alt="logo" />
+            <h1 class="text-xl font-bold text--500"></h1>
+        </div>
+        <button id="cart-button"
+            class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded flex items-center gap-2">
+            <i class="bi bi-basket"></i>
+            Корзина (<span id="cart-count">0</span>)
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+        class="relative bg-[url('https://media.istockphoto.com/id/499844279/ru/фото/приготовьте-подготовке-турецкий-шаурма.jpg?s=612x612&w=0&k=20&c=Mxn5Hjww_bV4WTDGp4wUAinrF8T4wMFRmP0VhaTOTu0=')] bg-cover bg-center h-[400px] flex items-center justify-center">
+        <div class="bg-black bg-opacity-60 text-white p-8 rounded-lg text-center">
+            <h2 class="text-3xl font-bold mb-4">Свежие и вкусные донеры каждый день</h2>
+            <button onclick="document.getElementById('doners-section').scrollIntoView({behavior: 'smooth'});"
+                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition">Посмотреть
+                меню</button>
+        </div>
+    </section>
+
+    <!-- Каталог Донеров -->
+    <section id="doners-section" class="py-12 px-4 md:px-16 relative">
+
+        <h2 class="text-2xl font-bold text-center mb-8">Наши Донеры</h2>
+
+        <div class="relative">
+            <!-- Кнопки прокрутки донеров -->
+            <button class="carousel-button carousel-left" data-target="doners-container" aria-label="Прокрутить влево">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="carousel-button carousel-right" data-target="doners-container"
+                aria-label="Прокрутить вправо">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+            <div id="doners-container" class="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-4">
+                <!-- Карточки донеров будут добавлены JS -->
+            </div>
+        </div>
+    </section>
+    <section class="py-12 px-4 md:px-16 relative">
+        <h2 class="text-2xl font-bold text-center mb-8">Пицца</h2>
+
+        <div class="relative">
+            <button class="carousel-button carousel-left" data-target="pizza-container" aria-label="Прокрутить влево">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="carousel-button carousel-right" data-target="pizza-container" aria-label="Прокрутить вправо">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+            <div id="pizza-container" class="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-4">
+                <!-- Карточки пицц появятся здесь через JS -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Соки -->
+    <section class="py-12 px-4 md:px-16 relative">
+        <h2 class="text-2xl font-bold text-center mb-8">Напитки</h2>
+
+        <div class="relative">
+            <!-- Кнопки прокрутки соков -->
+            <button class="carousel-button carousel-left" data-target="juices-container" aria-label="Прокрутить влево">
+                <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="carousel-button carousel-right" data-target="juices-container"
+                aria-label="Прокрутить вправо">
+                <i class="bi bi-chevron-right"></i>
+            </button>
+
+            <div id="juices-container" class="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar pb-4">
+                <!-- Карточки соков будут добавлены JS -->
+            </div>
+        </div>
+
+    </section>
+    <!-- 🎁 Акции -->
+    <!-- 🎁 Акции -->
+    <section class="px-4 md:px-16 py-10">
+        <h2 class="text-2xl font-bold mb-6">🔥 Акции</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Карточка 1 -->
+            <div class="bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+                <img src="https://imageproxy.wolt.com/menu/menu-images/62149fedae5de3b8d91a0973/79e72e86-90b0-11ed-bb1c-d6ca91e3574d_2__5_.jpeg"
+                    alt="Донер + напиток" class="rounded-lg mb-4">
+                <h3 class="font-semibold text-lg">Донер + напиток</h3>
+                <p class="text-sm text-gray-600 mb-4">При заказе от 800₽ — напиток в подарок!</p>
+                <button class="bg-red-500 hover:bg-red-600 text-white rounded-full py-2 mt-auto">Добавить в
+                    корзину</button>
+            </div>
+            <!-- Карточка 2 -->
+            <div class="bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+                <img src="https://imageproxy.wolt.com/menu/menu-images/62149fedae5de3b8d91a0973/1141e87a-8f4e-11ed-a8bc-d65955744342_6__6_.jpeg"
+                    alt="Скидка 15%" class="rounded-lg mb-4">
+                <h3 class="font-semibold text-lg">Скидка 15%</h3>
+                <p class="text-sm text-gray-600 mb-4">С 12:00 до 15:00 по будням.</p>
+                <button class="bg-red-500 hover:bg-red-600 text-white rounded-full py-2 mt-auto">Добавить в
+                    корзину</button>
+            </div>
+            <!-- Карточка 3 -->
+            <div class="bg-white rounded-xl shadow p-4 flex flex-col justify-between">
+                <img src="https://pizza-shlyapa.ru/wp-content/uploads/2022/07/%D0%A4%D0%B8%D1%80%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9-%D0%BA%D0%BE%D0%BC%D0%B1%D0%BE-%D1%81-%D0%BA%D0%BE%D0%BB%D0%BE%D0%B9.png"
+                    alt="3 по цене 2" class="rounded-lg mb-4">
+                <h3 class="font-semibold text-lg">3 по цене 2</h3>
+                <p class="text-sm text-gray-600 mb-4">Купи 2 донера — получи 3-й бесплатно!</p>
+                <button class="bg-red-500 hover:bg-red-600 text-white rounded-full py-2 mt-auto">Добавить в
+                    корзину</button>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- 👨‍🍳 О нас -->
+    <section class="px-4 md:px-16 py-10 bg-gray-100 rounded-xl mb-8">
+        <h2 class="text-2xl font-bold mb-6">👨‍🍳 Почему выбирают нас</h2>
+        <div class="grid md:grid-cols-3 gap-6 text-center">
+            <div class="bg-white p-6 rounded-xl shadow">
+                <span class="text-4xl">⚡</span>
+                <h3 class="text-lg font-semibold mt-2">Быстро готовим</h3>
+                <p class="text-sm text-gray-600 mt-1">Ваш заказ будет готов за 10–15 минут.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow">
+                <span class="text-4xl">🔥</span>
+                <h3 class="text-lg font-semibold mt-2">Всегда горячо</h3>
+                <p class="text-sm text-gray-600 mt-1">Доставляем блюда горячими и свежими.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow">
+                <span class="text-4xl">😋</span>
+                <h3 class="text-lg font-semibold mt-2">Очень вкусно</h3>
+                <p class="text-sm text-gray-600 mt-1">Сочетание свежих ингредиентов и авторских рецептов.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🏠 О нас -->
+    <!-- 🏠 О нас -->
+    <section class="px-4 md:px-16 py-12 bg-red-500 text-white">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <!-- Текст -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">О нас</h2>
+                <p class="mb-3 text-lg">Мы открылись в 2025 году и быстро стали любимым местом в Таразе. У нас вкусно,
+                    быстро и по-честному!</p>
+                <p class="mb-3 text-lg">Готовим из свежих продуктов каждый день и вкладываем душу в каждый донер.</p>
+                <p class="mt-6 font-semibold text-lg">📍 Адрес: г. Тараз, ул. Толе би, 38</p>
+
+                <!-- Кнопка открытия карты -->
+                <a href="https://go.2gis.com/iX8VQ" target="_blank" rel="noopener noreferrer">
+                    <button
+                        class="mt-4 px-6 py-2 bg-white text-red-600 font-bold rounded-full hover:bg-red-100 transition-all">
+                        Посмотреть на 2ГИС
+                    </button>
+                </a>
+            </div>
+
+            <!-- Фото -->
+            <div>
+                <img src="images/zavedenie.jpg" alt="Фото нашего заведения" class="rounded-xl shadow-xl">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Modal корзины -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg max-w-md w-full p-6 relative">
+            <button id="close-modal"
+                class="absolute top-2 right-2 text-gray-500 hover:text-black text-xl">&times;</button>
+            <h3 class="text-xl font-bold mb-4">Ваша корзина</h3>
+            <div id="cart-items" class="space-y-3 text-sm text-gray-700 max-h-80 overflow-y-auto">
+                <p>Корзина пуста.</p>
+            </div>
+            <div class="mt-6 flex flex-col gap-3">
+                <p class="font-semibold text-right">Итого: <span id="cart-total">0</span> ₸</p>
+                <button id="whatsapp-order"
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition" disabled>Заказать
+                    через WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрипт корзины и товаров -->
+    <script>
+
+        const doners = [
+            { name: "Донер говяжий", price: 1590, img: "https://cdn-kz3.foodpicasso.com/assets/2024/04/18/f052ddcd44639a0a68719c0b0ffa26c2---jpeg_1000x_103c0_convert.jpeg" },
+            { name: "Донер говяжий с сыром", price: 1690, img: "https://cdn-kz3.foodpicasso.com/assets/2024/10/23/e3e975b4b43fed0e038a2ff369977445---jpg_1000x_103c0_convert.jpg" },
+            { name: "Донер куриный", price: 1290, img: "https://storage.emenu.delivery/product/images/c9/rc/c9rcv4qczpzyczozowkqeijrh-eyk-7m.jpg" },
+            { name: "Донер куриный с сыром", price: 1390, img: "https://cdn-kz3.foodpicasso.com/assets/2024/04/18/f052ddcd44639a0a68719c0b0ffa26c2---jpeg_1000x_103c0_convert.jpeg" },
+            { name: "Донер микс", price: 1690, img: "https://vkus-eda-dostavka.ru/static/images/3f611d28419e66b5c7f7ba613ea1f0ab-600x450.jpeg" },
+            { name: "Донер микс с сыром", price: 1790, img: "https://prinesi.kz/wp-content/uploads/2021/11/photo1637161491-5.jpeg" },
+            { name: "Турк кебаб", price: 1590, img: "https://cdn-kz3.foodpicasso.com/assets/2024/04/18/0dd3b88ebaa39cfe2774104b83ada9ce---jpeg_1000x_103c0_convert.jpeg" },
+            { name: "Турк кебаб куриный", price: 1290, img: "https://vkus-eda-dostavka.ru/static/images/3f611d28419e66b5c7f7ba613ea1f0ab-600x450.jpeg" },
+            { name: "Хот дог", price: 600, img: "https://grill-food22.ru/wp-content/uploads/2022/04/hotdog-1.jpg" },
+            { name: "Хот дог королевский", price: 750, img: "https://vkuson.com/assets/menu/menu-card-photos/grill-dog.png" },
+            { name: "Чиз-дог", price: 700, img: "https://cdn-kz3.foodpicasso.com/assets/2024/04/18/0dd3b88ebaa39cfe2774104b83ada9ce---jpeg_1000x_103c0_convert.jpeg" },
+            { name: "Чиз-дог королевский", price: 850, img: "https://vkus-eda-dostavka.ru/static/images/3f611d28419e66b5c7f7ba613ea1f0ab-600x450.jpeg" },
+            { name: "Гамбургер", price: 1100, img: "https://instafood.com.ua/images/full_shop_product_pc/gamburger-5d8cc86ead475.png" },
+            { name: "Чизбургер", price: 1200, img: "https://static.insales-cdn.com/images/products/1/6454/449927478/chizburger_s_goviadynoy.jpg" },
+            { name: "Бигбургер", price: 1500, img: "https://sun-thai.com/894-1913-large/big-burger-s-myasnoy-kotletoy.jpg" },
+            { name: "Бигбургер с сыром", price: 1600, img: "https://sun-thai.com/894-1913-large/big-burger-s-myasnoy-kotletoy.jpg" },
+            { name: "Фри", price: 700, img: "https://resizer.avtosushi.ru/resize?quality=90&height=500&width=720&url=https%3A%2F%2Fresizer.avtosushi.ru%2Fcache%2F9%2Fa%2F9%2F9a997f85-bcc7-4a24-84df-c67d76567423.png&sign=CAdxva5Kcr_MrKDXlblEaLR5nOqrDyx5rhpJlGejl9U" },
+            { name: "Наггетсы", price: 800, img: "https://zvenpizza.ru/wp-content/uploads/2022/03/thumb_fdef0f54-d56c-44ba-b807-f8d2215e8883.jpg" },
+
+        ];
+
+        const juices = [
+            { name: "Кола 0,5л", price: 550, img: "https://kaif.md/wp-content/uploads/2022/09/napitok-coca-cola-0-5l-500x500-1.jpg" },
+            { name: "Пепси 0,5л", price: 550, img: "https://static.insales-cdn.com/images/products/1/4073/301461481/Напиток_PEPSI_газ_0_5_л_КАЗАХСТАН.jpg" },
+            { name: "Фанта 0,5л", price: 550, img: "https://static.insales-cdn.com/images/products/1/8085/315858837/Напиток_FANTA_Апельсин_0_5_л_пл.jpg" },
+            { name: "Fuse tea 0,5л ", price: 550, img: "https://cc.kz/upload/iblock/92d/ktr74viog6p35jx51yno0ymw80uf2m2e.jpg" },
+            { name: "Макси чай 0,5л  ", price: 550, img: "https://vkusmart.vmv.kz/upload/iblock/400/4005eb70b952e404f68541dfe06d8df3.jpg" },
+
+
+            { name: "Айран", price: 300, img: "https://carefood.kz/upload/iblock/a51/dk0gwikghuvhoqdulg7a0glzgevkoaxy/ayran_fresh_300gr.jpg" },
+            { name: "Кола 1л", price: 700, img: "https://static.insales-cdn.com/images/products/1/3472/301460880/Кола_1_л.jpg" },
+            { name: "Фанта 1л", price: 700, img: "https://pivomania.kz/wp-content/uploads/2019/09/Fanta-1L-min.png" },
+            { name: "Fuse tea 1л  ", price: 700, img: "https://cc.kz/upload/iblock/dc4/cqj863cubqmhead8pokoqv4x0zgo1kw0.jpg" },
+            { name: "Макси чай 1,2л", price: 700, img: "https://minio.clevermart.kz/food/images/2022/6/10/d2e3e093-8a63-47bb-a185-5fb613833cfb/M_4870202522022_1.jpg" },
+            { name: "Чай черный", price: 100, img: "https://e2.edimdoma.ru/data/ingredients/0000/1200/1200-ed4_wide.jpg?1515760357" },
+            { name: "Чай зеленый", price: 100, img: "https://admin.newtea.ua/files/styles/blog_mobile_webp/public/blog/zeleniy-chay-korist-dlya-shkiri.png.webp?itok=3wZ79aHX" },
+            { name: "Чай черный чайник", price: 300, img: "https://coffee-shop.tomsk.ru/articles/wp-content/uploads/2015/06/chai_coffeshop.jpg" },
+            { name: "Чай зеленый чайник", price: 300, img: "https://img.freepik.com/premium-photo/green-tea-glass-teapot-cup_318290-4.jpg" },
+            { name: "Чай ташкентский чайник", price: 400, img: "https://dayako.kz/sites/default/files/common/styles/full/public/15726732351505805304590.jpg?itok=opZvPi2i" },
+            { name: "Кофе 3в1", price: 250, img: "https://www.cafeservice.ru/uploads/images/1335130.jpg" },
+
+            { name: "Горилла", price: 550, img: "https://static.insales-cdn.com/images/products/1/1978/751110074/3f95549d-5cbb-4182-8044-58b3aa79bcdb.jpg" },
+            { name: "Диззи", price: 550, img: "https://img.oe.kz/bitrix-catalog/19149/1747377593-3rbc2jo2aaeks9upq3y1f4m570o6ryh3.jpg" },
+        ];
+        const pizzas = [
+            { name: "Маргарита", price: 1990, img: "https://cdn-kz3.foodpicasso.com/assets/2024/06/05/e8f36c4cfeed9604770d8dbd92f62c16---png_1000x_103c0_convert.png" },
+            { name: "Пицца с грибами", price: 2190, img: "https://sizomarket.kz/wp-content/uploads/2020/09/46eeb81b-c677-4c0e-ab8d-59fa986ee755.jpg" },
+            { name: "Пицца с шампиньонами", price: 2290, img: "https://fullfox.pizza/wp-content/uploads/2021/07/pizza-s-gribami-i-kuricey01-445x445.jpg" },
+            { name: "Пицца с курицей", price: 2290, img: "https://tiktak-delivery.ru/img/dish/W2uxd8cTnnyJjzc5.jpg?mark=%2Fhome%2Ftiktak%2Fhtdocs%2Fpublic%2Fassets%2Findex%2Fimages%2Fwater-mark-2.png&s=7ff394c891a28d256dbb9d9e5adc74b6" },
+            { name: "Пепперони", price: 2390, img: "https://sizomarket.kz/wp-content/uploads/2020/09/46eeb81b-c677-4c0e-ab8d-59fa986ee755.jpg" },
+            { name: "Мясная", price: 2490, img: "https://bistro-olymp.ru/files/images/pitstsa-myasnaya.png" },
+            { name: "4 сезона", price: 2490, img: "https://cdn-kz3.foodpicasso.com/assets/2023/12/08/e1048c88977546112f8b9118726303f9---jpeg_1000x_103c0_convert.jpeg" },
+            { name: "Курица ананас", price: 2490, img: "https://main-cdn.sbermegamarket.ru/big1/hlr-system/212/376/211/326/184/0/100050032505b0.jpg" },
+            { name: "Мясное ассорти", price: 2690, img: "https://static.pizzasushiwok.ru/images/menu_new/2112t-1300.jpg" },
+            { name: "Цезарь", price: 2890, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-EJaGe8ey13Z08SFO2nwu-6y_DMP30DfhcCoglwTkLgmpd0qU1maiChud2CD21zdVXZs&usqp=CAU" },
+        ];
+
+
+        const donersContainer = document.getElementById('doners-container');
+        const juicesContainer = document.getElementById('juices-container');
+        const cartModal = document.getElementById('cart-modal');
+        const cartButton = document.getElementById('cart-button');
+        const closeModal = document.getElementById('close-modal');
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const cartCount = document.getElementById('cart-count');
+        const whatsappOrderBtn = document.getElementById('whatsapp-order');
+
+        let cart = [];
+
+        // Функция генерации карточек без кнопок +/−, только "Добавить в корзину"
+        function createCards(items, container) {
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card-item min-w-[200px] max-w-[200px] bg-white rounded-xl shadow hover:scale-105 transition transform duration-300 shrink-0 flex flex-col';
+                card.innerHTML = `
+          <img src="${item.img}" class="w-full h-36 object-cover rounded-t-xl" alt="${item.name}" />
+          <div class="p-3 text-center flex flex-col flex-grow">
+            <p class="font-semibold">${item.name}</p>
+            <p class="text-sm text-gray-500 mb-2">${item.price} ₸</p>
+            <button class="add-to-cart-btn mt-auto border border-red-500 text-red-500 px-3 py-1 rounded hover:bg-red-500 hover:text-white transition">В корзину</button>
+          </div>`;
+                container.appendChild(card);
+            });
+        }
+
+        // Инициализация карточек при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            createCards(doners, donersContainer);
+            createCards(juices, juicesContainer);
+            createCards(pizzas, document.getElementById('pizza-container'));  // Добавь эту строку
+        });
+
+
+        // Обработка кликов по кнопкам "Добавить в корзину"
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart-btn')) {
+                const card = e.target.closest('.card-item');
+                const name = card.querySelector('p.font-semibold').textContent;
+                const price = parseInt(card.querySelector('p.text-sm').textContent);
+                const found = cart.find(item => item.name === name);
+                if (found) {
+                    found.qty++;
+                } else {
+                    cart.push({ name, price, qty: 1 });
+                }
+                updateCartDisplay();
+            }
+        });
+
+        // Открытие и закрытие модалки корзины
+        cartButton.addEventListener('click', () => {
+            updateCartDisplay();
+            cartModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            cartModal.classList.add('hidden');
+        });
+
+        // Обновление корзины и отрисовка товаров с кнопками + и −
+        function updateCartDisplay() {
+            cartItems.innerHTML = '';
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Корзина пуста.</p>';
+                whatsappOrderBtn.disabled = true;
+                whatsappOrderBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                let total = 0;
+                cart.forEach(item => {
+                    total += item.price * item.qty;
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'flex justify-between items-center gap-2';
+
+                    itemDiv.innerHTML = `
+            <div class="flex flex-col">
+              <p>${item.name}</p>
+              <small>${item.qty} × ${item.price} ₸ = ${item.qty * item.price} ₸</small>
+            </div>
+            <div class="flex items-center gap-2">
+              <button class="decrease-qty-btn bg-red-100 text-red-500 px-2 rounded">−</button>
+              <span>${item.qty}</span>
+              <button class="increase-qty-btn bg-red-100 text-red-500 px-2 rounded">+</button>
+            </div>
+          `;
+
+                    // Кнопки + и − для изменения количества
+                    const decreaseBtn = itemDiv.querySelector('.decrease-qty-btn');
+                    const increaseBtn = itemDiv.querySelector('.increase-qty-btn');
+                    const qtySpan = itemDiv.querySelector('span');
+
+                    decreaseBtn.addEventListener('click', () => {
+                        if (item.qty > 1) {
+                            item.qty--;
+                        } else {
+                            // Если qty становится 0, удалить товар из корзины
+                            cart = cart.filter(i => i !== item);
+                        }
+                        updateCartDisplay();
+                    });
+
+                    increaseBtn.addEventListener('click', () => {
+                        item.qty++;
+                        updateCartDisplay();
+                    });
+
+                    cartItems.appendChild(itemDiv);
+                });
+                cartTotal.textContent = total;
+                cartCount.textContent = cart.reduce((acc, i) => acc + i.qty, 0);
+                whatsappOrderBtn.disabled = false;
+                whatsappOrderBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+
+        // Заказ через WhatsApp — формируем сообщение
+        whatsappOrderBtn.addEventListener('click', () => {
+            if (cart.length === 0) return;
+
+            const orderLines = cart.map(i => `${i.name} — ${i.qty} шт. — ${i.price * i.qty} ₸`);
+            const total = cart.reduce((acc, i) => acc + i.price * i.qty, 0);
+            const message = encodeURIComponent(
+                `Здравствуйте! Я хочу заказать:\n${orderLines.join('\n')}\n\nИтого: ${total} ₸`
+            );
+            const phone = '77715738097'; // замените на ваш номер в формате без знаков
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        });
+
+        // Кнопки прокрутки каруселей
+        document.querySelectorAll('.carousel-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const targetId = button.getAttribute('data-target');
+                const container = document.getElementById(targetId);
+                const scrollAmount = 250; // на сколько пикселей скроллить
+
+                if (button.classList.contains('carousel-left')) {
+                    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                } else if (button.classList.contains('carousel-right')) {
+                    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
